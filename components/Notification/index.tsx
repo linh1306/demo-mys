@@ -11,7 +11,7 @@ const ListDemo = () => (
       <List.Item>
         <List.Item.Meta
           avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`} />}
-          title={<a href="https://ant.design">{item.title}</a>}
+          title={<a href="https://ant.design">{'tiêu đề'}</a>}
           description="Ant Design, a design language for background applications, is refined by Ant UED Team"
         />
       </List.Item>
