@@ -11,7 +11,7 @@ import { LeftOutlined } from '@ant-design/icons';
 
 
 function Login(): JSX.Element {
-  const [tabActive, setTabActive] = useState<string>('Sign in')
+  const [tabActive, setTabActive] = useState<string>('Sign In')
 
   const items = [
     {
