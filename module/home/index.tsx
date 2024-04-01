@@ -1,18 +1,12 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LayoutGlobal from '@app/components/Layout';
 import TableGlobal from '@app/components/Table';
 import { Button, DatePicker, Dropdown, Input, InputNumber, Radio, RadioChangeEvent } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
-
-import type { MenuProps } from 'antd';
-
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: <div>ạdjaspf</div>,
-  }
-];
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@app/redux/store';
+import {IAccountInfo} from "../../types";
 
 type TElementFind = 'hiển thị' | 'số lượng' | 'level mục tiêu' | 'nhóm'
 type PickerMode = 'date' | 'week' | 'month' | 'quarter' | 'year'
@@ -72,7 +66,14 @@ const ElementFind = () => {
   )
 }
 
-const Home: React.FC = () => {
+export default function Home() {
+  const user = useAppSelector(state => state.user)
+  const router = useRouter();
+  
+  if (Object.keys(user).length === 0) {
+    router.push('/about')
+    return null
+  }
   return (
     <LayoutGlobal>
       <div className='flex flex-col gap-3'>
@@ -184,6 +185,4 @@ const Home: React.FC = () => {
       </div>
     </LayoutGlobal>
   );
-};
-
-export { Home };
+}

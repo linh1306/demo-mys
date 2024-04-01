@@ -3,14 +3,23 @@ import Input from '@app/components/Input';
 import { Tabs } from '@app/components/Tabs';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import { ForgotPassword } from './ForgotPassword';
 import { LeftOutlined } from '@ant-design/icons';
+import { useAppSelector } from '@app/redux/store';
+import { useRouter } from 'next/navigation';
 
+export default function Login() {
+  const user = useAppSelector(state => state.user)
+  const router = useRouter();
 
-function Login(): JSX.Element {
+  useEffect(() => {
+    if (Object.keys(user).length > 0) {
+      router.push('/')
+    }
+  }, [user])
   const [tabActive, setTabActive] = useState<string>('Sign In')
 
   const items = [
@@ -54,5 +63,3 @@ function Login(): JSX.Element {
     </div>
   )
 }
-
-export { Login }

@@ -1,3 +1,2 @@
-import { Login } from "@app/module/login";
-
+import Login from "@app/module/login";
 export default Login

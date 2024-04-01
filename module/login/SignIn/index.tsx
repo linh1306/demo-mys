@@ -16,13 +16,16 @@ export function SignIn(props: ISignInProps): JSX.Element {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const user = useAppSelector(state=>state.user)
+  console.log('state',user);
+  
 
   const handleLogin = async () => {
     const res = await login({
       "emailOrUsername": email,
       "password": password,
     })
-    dispatch(loginUser(res))
+    dispatch(loginUser(res.data))
   }
 
   const handleChangeEmail = (e: any) => {
